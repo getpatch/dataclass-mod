@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "dataclasses-mod"
+version = "0.1.0"
+description = ""
+authors = ["Nikolai Ryzhkov <namezys@anagram.care>"]
+readme = "README.md"
+packages = [{include = "dataclasses_mod", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+dataclasses-json = "^0.6.7"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
