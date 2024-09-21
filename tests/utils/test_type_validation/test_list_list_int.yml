@@ -1,0 +1,194 @@
+None:
+  message: expect list, got None
+  notes: null
+  type: TypeError
+int:
+  message: expect list, got int
+  notes: null
+  type: TypeError
+list_empty: null
+list_int:
+  message: expect list of list[int] (3 sub-exceptions)
+  notes: null
+  sub-exceptions-0:
+    message: expect list, got int
+    notes:
+    - index 0
+    type: TypeError
+  sub-exceptions-1:
+    message: expect list, got int
+    notes:
+    - index 1
+    type: TypeError
+  sub-exceptions-2:
+    message: expect list, got int
+    notes:
+    - index 2
+    type: TypeError
+  type: ExceptionGroup
+list_int_or_str:
+  message: expect list of list[int] (3 sub-exceptions)
+  notes: null
+  sub-exceptions-0:
+    message: expect list, got int
+    notes:
+    - index 0
+    type: TypeError
+  sub-exceptions-1:
+    message: expect list, got int
+    notes:
+    - index 2
+    type: TypeError
+  sub-exceptions-2:
+    message: expect list, got str
+    notes:
+    - index 1
+    type: TypeError
+  type: ExceptionGroup
+list_list_int: null
+list_list_int_or_str:
+  message: expect list of list[int] (2 sub-exceptions)
+  notes: null
+  sub-exceptions-0:
+    message: expect list of int (1 sub-exception)
+    notes:
+    - index 1
+    sub-exceptions-0:
+      message: expect int, got str
+      notes:
+      - value 'str'
+      - index 0
+      type: TypeError
+    type: ExceptionGroup
+  sub-exceptions-1:
+    message: expect list of int (1 sub-exception)
+    notes:
+    - index 3
+    sub-exceptions-0:
+      message: expect int, got str
+      notes:
+      - value 'str'
+      - index 1
+      type: TypeError
+    type: ExceptionGroup
+  type: ExceptionGroup
+list_none:
+  message: expect list of list[int] (2 sub-exceptions)
+  notes: null
+  sub-exceptions-0:
+    message: expect list, got None
+    notes:
+    - index 0
+    type: TypeError
+  sub-exceptions-1:
+    message: expect list, got None
+    notes:
+    - index 1
+    type: TypeError
+  type: ExceptionGroup
+list_none_or_int:
+  message: expect list of list[int] (2 sub-exceptions)
+  notes: null
+  sub-exceptions-0:
+    message: expect list, got None
+    notes:
+    - index 0
+    type: TypeError
+  sub-exceptions-1:
+    message: expect list, got int
+    notes:
+    - index 1
+    type: TypeError
+  type: ExceptionGroup
+list_str:
+  message: expect list of list[int] (2 sub-exceptions)
+  notes: null
+  sub-exceptions-0:
+    message: expect list, got str
+    notes:
+    - index 0
+    type: TypeError
+  sub-exceptions-1:
+    message: expect list, got str
+    notes:
+    - index 1
+    type: TypeError
+  type: ExceptionGroup
+list_str_or_none:
+  message: expect list of list[int] (2 sub-exceptions)
+  notes: null
+  sub-exceptions-0:
+    message: expect list, got None
+    notes:
+    - index 1
+    type: TypeError
+  sub-exceptions-1:
+    message: expect list, got str
+    notes:
+    - index 0
+    type: TypeError
+  type: ExceptionGroup
+set_empty:
+  message: expect list, got set
+  notes: null
+  type: TypeError
+set_int:
+  message: expect list, got set
+  notes: null
+  type: TypeError
+set_int_or_str:
+  message: expect list, got set
+  notes: null
+  type: TypeError
+set_none:
+  message: expect list, got set
+  notes: null
+  type: TypeError
+set_str:
+  message: expect list, got set
+  notes: null
+  type: TypeError
+set_str_or_none:
+  message: expect list, got set
+  notes: null
+  type: TypeError
+str:
+  message: expect list, got str
+  notes: null
+  type: TypeError
+tuple_empty:
+  message: expect list, got tuple
+  notes: null
+  type: TypeError
+tuple_int:
+  message: expect list, got tuple
+  notes: null
+  type: TypeError
+tuple_int_int_int:
+  message: expect list, got tuple
+  notes: null
+  type: TypeError
+tuple_int_str:
+  message: expect list, got tuple
+  notes: null
+  type: TypeError
+tuple_list_int_set_str_or_int:
+  message: expect list, got tuple
+  notes: null
+  type: TypeError
+tuple_none:
+  message: expect list, got tuple
+  notes: null
+  type: TypeError
+tuple_none_none:
+  message: expect list, got tuple
+  notes: null
+  type: TypeError
+tuple_str:
+  message: expect list, got tuple
+  notes: null
+  type: TypeError
+tuple_str_str_str:
+  message: expect list, got tuple
+  notes: null
+  type: TypeError

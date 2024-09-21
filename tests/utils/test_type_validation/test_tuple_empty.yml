@@ -1,0 +1,105 @@
+None:
+  message: expect tuple, got None
+  notes: null
+  type: TypeError
+int:
+  message: expect tuple, got int
+  notes: null
+  type: TypeError
+list_empty:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_int:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_int_or_str:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_list_int:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_list_int_or_str:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_none:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_none_or_int:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_str:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_str_or_none:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+set_empty:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+set_int:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+set_int_or_str:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+set_none:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+set_str:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+set_str_or_none:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+str:
+  message: expect tuple, got str
+  notes: null
+  type: TypeError
+tuple_empty: null
+tuple_int:
+  message: expect empty tuple, got 1 elements
+  notes: null
+  type: ValueError
+tuple_int_int_int:
+  message: expect empty tuple, got 3 elements
+  notes: null
+  type: ValueError
+tuple_int_str:
+  message: expect empty tuple, got 2 elements
+  notes: null
+  type: ValueError
+tuple_list_int_set_str_or_int:
+  message: expect empty tuple, got 2 elements
+  notes: null
+  type: ValueError
+tuple_none:
+  message: expect empty tuple, got 1 elements
+  notes: null
+  type: ValueError
+tuple_none_none:
+  message: expect empty tuple, got 2 elements
+  notes: null
+  type: ValueError
+tuple_str:
+  message: expect empty tuple, got 1 elements
+  notes: null
+  type: ValueError
+tuple_str_str_str:
+  message: expect empty tuple, got 3 elements
+  notes: null
+  type: ValueError

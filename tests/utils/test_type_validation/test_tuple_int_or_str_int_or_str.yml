@@ -1,0 +1,161 @@
+None:
+  message: expect tuple, got None
+  notes: null
+  type: TypeError
+int:
+  message: expect tuple, got int
+  notes: null
+  type: TypeError
+list_empty:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_int:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_int_or_str:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_list_int:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_list_int_or_str:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_none:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_none_or_int:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_str:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+list_str_or_none:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+set_empty:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+set_int:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+set_int_or_str:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+set_none:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+set_str:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+set_str_or_none:
+  message: expect tuple, got set
+  notes: null
+  type: TypeError
+str:
+  message: expect tuple, got str
+  notes: null
+  type: TypeError
+tuple_empty:
+  message: expect 2 elements in tuple, got 0 elements
+  notes: null
+  type: ValueError
+tuple_int:
+  message: expect 2 elements in tuple, got 1 elements
+  notes: null
+  type: ValueError
+tuple_int_int_int:
+  message: expect 2 elements in tuple, got 3 elements
+  notes: null
+  type: ValueError
+tuple_int_str: null
+tuple_list_int_set_str_or_int:
+  message: expect tuple[int | str, int | str] (2 sub-exceptions)
+  notes: null
+  sub-exceptions-0:
+    message: expect int | str (2 sub-exceptions)
+    notes:
+    - value [1, 2]
+    - index 0
+    sub-exceptions-0:
+      message: expect int, got list
+      notes: null
+      type: TypeError
+    sub-exceptions-1:
+      message: expect str, got list
+      notes: null
+      type: TypeError
+    type: ExceptionGroup
+  sub-exceptions-1:
+    message: expect int | str (2 sub-exceptions)
+    notes:
+    - value {'foo', 1}
+    - index 1
+    sub-exceptions-0:
+      message: expect int, got set
+      notes: null
+      type: TypeError
+    sub-exceptions-1:
+      message: expect str, got set
+      notes: null
+      type: TypeError
+    type: ExceptionGroup
+  type: ExceptionGroup
+tuple_none:
+  message: expect 2 elements in tuple, got 1 elements
+  notes: null
+  type: ValueError
+tuple_none_none:
+  message: expect tuple[int | str, int | str] (2 sub-exceptions)
+  notes: null
+  sub-exceptions-0:
+    message: expect int | str (2 sub-exceptions)
+    notes:
+    - value None
+    - index 0
+    sub-exceptions-0:
+      message: expect int, got None
+      notes: null
+      type: TypeError
+    sub-exceptions-1:
+      message: expect str, got None
+      notes: null
+      type: TypeError
+    type: ExceptionGroup
+  sub-exceptions-1:
+    message: expect int | str (2 sub-exceptions)
+    notes:
+    - value None
+    - index 1
+    sub-exceptions-0:
+      message: expect int, got None
+      notes: null
+      type: TypeError
+    sub-exceptions-1:
+      message: expect str, got None
+      notes: null
+      type: TypeError
+    type: ExceptionGroup
+  type: ExceptionGroup
+tuple_str:
+  message: expect 2 elements in tuple, got 1 elements
+  notes: null
+  type: ValueError
+tuple_str_str_str:
+  message: expect 2 elements in tuple, got 3 elements
+  notes: null
+  type: ValueError

@@ -1,0 +1,327 @@
+None:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value None
+  sub-exceptions-0:
+    message: expect int, got None
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got None
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+int: null
+list_empty:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value []
+  sub-exceptions-0:
+    message: expect int, got list
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got list
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+list_int:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value [12, 13, 16]
+  sub-exceptions-0:
+    message: expect int, got list
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got list
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+list_int_or_str:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value [12, 'foo', 16]
+  sub-exceptions-0:
+    message: expect int, got list
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got list
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+list_list_int:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value [[1, 2], [1]]
+  sub-exceptions-0:
+    message: expect int, got list
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got list
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+list_list_int_or_str:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value [[1, 2], ['str'], [1], [1, 'str']]
+  sub-exceptions-0:
+    message: expect int, got list
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got list
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+list_none:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value [None, None]
+  sub-exceptions-0:
+    message: expect int, got list
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got list
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+list_none_or_int:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value [None, 12]
+  sub-exceptions-0:
+    message: expect int, got list
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got list
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+list_str:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value ['', 'foo']
+  sub-exceptions-0:
+    message: expect int, got list
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got list
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+list_str_or_none:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value ['foo', None]
+  sub-exceptions-0:
+    message: expect int, got list
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got list
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+set_empty:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value {}
+  sub-exceptions-0:
+    message: expect int, got set
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got set
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+set_int:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value {1, 2}
+  sub-exceptions-0:
+    message: expect int, got set
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got set
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+set_int_or_str:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value {'bar', 'foo', 1}
+  sub-exceptions-0:
+    message: expect int, got set
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got set
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+set_none:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value {None}
+  sub-exceptions-0:
+    message: expect int, got set
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got set
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+set_str:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value {'bar', 'foo'}
+  sub-exceptions-0:
+    message: expect int, got set
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got set
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+set_str_or_none:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value {'foo', None}
+  sub-exceptions-0:
+    message: expect int, got set
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got set
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+str: null
+tuple_empty:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value ()
+  sub-exceptions-0:
+    message: expect int, got tuple
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got tuple
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+tuple_int:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value (1,)
+  sub-exceptions-0:
+    message: expect int, got tuple
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got tuple
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+tuple_int_int_int:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value (1, 12, 13)
+  sub-exceptions-0:
+    message: expect int, got tuple
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got tuple
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+tuple_int_str:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value (1, 'foo')
+  sub-exceptions-0:
+    message: expect int, got tuple
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got tuple
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+tuple_list_int_set_str_or_int:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value ([1, 2], {'foo', 1})
+  sub-exceptions-0:
+    message: expect int, got tuple
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got tuple
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+tuple_none:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value (None,)
+  sub-exceptions-0:
+    message: expect int, got tuple
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got tuple
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+tuple_none_none:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value (None, None)
+  sub-exceptions-0:
+    message: expect int, got tuple
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got tuple
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+tuple_str:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value ('foo',)
+  sub-exceptions-0:
+    message: expect int, got tuple
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got tuple
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+tuple_str_str_str:
+  message: expect int | str (2 sub-exceptions)
+  notes:
+  - value ('foo', 'bar', '')
+  sub-exceptions-0:
+    message: expect int, got tuple
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got tuple
+    notes: null
+    type: TypeError
+  type: ExceptionGroup

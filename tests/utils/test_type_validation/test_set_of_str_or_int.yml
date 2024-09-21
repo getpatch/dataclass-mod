@@ -1,0 +1,122 @@
+None:
+  message: expect set, got None
+  notes: null
+  type: TypeError
+int:
+  message: expect set, got int
+  notes: null
+  type: TypeError
+list_empty:
+  message: expect set, got list
+  notes: null
+  type: TypeError
+list_int:
+  message: expect set, got list
+  notes: null
+  type: TypeError
+list_int_or_str:
+  message: expect set, got list
+  notes: null
+  type: TypeError
+list_list_int:
+  message: expect set, got list
+  notes: null
+  type: TypeError
+list_list_int_or_str:
+  message: expect set, got list
+  notes: null
+  type: TypeError
+list_none:
+  message: expect set, got list
+  notes: null
+  type: TypeError
+list_none_or_int:
+  message: expect set, got list
+  notes: null
+  type: TypeError
+list_str:
+  message: expect set, got list
+  notes: null
+  type: TypeError
+list_str_or_none:
+  message: expect set, got list
+  notes: null
+  type: TypeError
+set_empty: null
+set_int: null
+set_int_or_str: null
+set_none:
+  message: expect str | int (1 sub-exception)
+  notes: null
+  sub-exceptions-0:
+    message: expect str | int (2 sub-exceptions)
+    notes:
+    - value None
+    sub-exceptions-0:
+      message: expect int, got None
+      notes: null
+      type: TypeError
+    sub-exceptions-1:
+      message: expect str, got None
+      notes: null
+      type: TypeError
+    type: ExceptionGroup
+  type: ExceptionGroup
+set_str: null
+set_str_or_none:
+  message: expect str | int (1 sub-exception)
+  notes: null
+  sub-exceptions-0:
+    message: expect str | int (2 sub-exceptions)
+    notes:
+    - value None
+    sub-exceptions-0:
+      message: expect int, got None
+      notes: null
+      type: TypeError
+    sub-exceptions-1:
+      message: expect str, got None
+      notes: null
+      type: TypeError
+    type: ExceptionGroup
+  type: ExceptionGroup
+str:
+  message: expect set, got str
+  notes: null
+  type: TypeError
+tuple_empty:
+  message: expect set, got tuple
+  notes: null
+  type: TypeError
+tuple_int:
+  message: expect set, got tuple
+  notes: null
+  type: TypeError
+tuple_int_int_int:
+  message: expect set, got tuple
+  notes: null
+  type: TypeError
+tuple_int_str:
+  message: expect set, got tuple
+  notes: null
+  type: TypeError
+tuple_list_int_set_str_or_int:
+  message: expect set, got tuple
+  notes: null
+  type: TypeError
+tuple_none:
+  message: expect set, got tuple
+  notes: null
+  type: TypeError
+tuple_none_none:
+  message: expect set, got tuple
+  notes: null
+  type: TypeError
+tuple_str:
+  message: expect set, got tuple
+  notes: null
+  type: TypeError
+tuple_str_str_str:
+  message: expect set, got tuple
+  notes: null
+  type: TypeError

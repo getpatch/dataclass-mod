@@ -1,0 +1,131 @@
+None:
+  message: expect int, got None
+  notes:
+  - value None
+  type: TypeError
+int: null
+list_empty:
+  message: expect int, got list
+  notes:
+  - value []
+  type: TypeError
+list_int:
+  message: expect int, got list
+  notes:
+  - value [12, 13, 16]
+  type: TypeError
+list_int_or_str:
+  message: expect int, got list
+  notes:
+  - value [12, 'foo', 16]
+  type: TypeError
+list_list_int:
+  message: expect int, got list
+  notes:
+  - value [[1, 2], [1]]
+  type: TypeError
+list_list_int_or_str:
+  message: expect int, got list
+  notes:
+  - value [[1, 2], ['str'], [1], [1, 'str']]
+  type: TypeError
+list_none:
+  message: expect int, got list
+  notes:
+  - value [None, None]
+  type: TypeError
+list_none_or_int:
+  message: expect int, got list
+  notes:
+  - value [None, 12]
+  type: TypeError
+list_str:
+  message: expect int, got list
+  notes:
+  - value ['', 'foo']
+  type: TypeError
+list_str_or_none:
+  message: expect int, got list
+  notes:
+  - value ['foo', None]
+  type: TypeError
+set_empty:
+  message: expect int, got set
+  notes:
+  - value {}
+  type: TypeError
+set_int:
+  message: expect int, got set
+  notes:
+  - value {1, 2}
+  type: TypeError
+set_int_or_str:
+  message: expect int, got set
+  notes:
+  - value {'bar', 'foo', 1}
+  type: TypeError
+set_none:
+  message: expect int, got set
+  notes:
+  - value {None}
+  type: TypeError
+set_str:
+  message: expect int, got set
+  notes:
+  - value {'bar', 'foo'}
+  type: TypeError
+set_str_or_none:
+  message: expect int, got set
+  notes:
+  - value {'foo', None}
+  type: TypeError
+str:
+  message: expect int, got str
+  notes:
+  - value 'foo'
+  type: TypeError
+tuple_empty:
+  message: expect int, got tuple
+  notes:
+  - value ()
+  type: TypeError
+tuple_int:
+  message: expect int, got tuple
+  notes:
+  - value (1,)
+  type: TypeError
+tuple_int_int_int:
+  message: expect int, got tuple
+  notes:
+  - value (1, 12, 13)
+  type: TypeError
+tuple_int_str:
+  message: expect int, got tuple
+  notes:
+  - value (1, 'foo')
+  type: TypeError
+tuple_list_int_set_str_or_int:
+  message: expect int, got tuple
+  notes:
+  - value ([1, 2], {'foo', 1})
+  type: TypeError
+tuple_none:
+  message: expect int, got tuple
+  notes:
+  - value (None,)
+  type: TypeError
+tuple_none_none:
+  message: expect int, got tuple
+  notes:
+  - value (None, None)
+  type: TypeError
+tuple_str:
+  message: expect int, got tuple
+  notes:
+  - value ('foo',)
+  type: TypeError
+tuple_str_str_str:
+  message: expect int, got tuple
+  notes:
+  - value ('foo', 'bar', '')
+  type: TypeError

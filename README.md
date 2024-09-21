@@ -157,3 +157,17 @@ class A(ABC):
 # A.a is abstract field
 isinstance(A.a, dataclasses.Field)
 ```
+
+## Validation
+
+### Type validation
+
+A dataclass does not have any runtime validation for the field types.
+Adding validation to a data class enables runtime checking of types. 
+
+The list of supported types is limited:
+* python types: `str`, `int`, `None`, `list`
+* generics: `list[T] | tuple[T] | set[T] `
+* unions and options: `int | str`
+* ellipsis and any type: `...`, `typing.Any`
+
