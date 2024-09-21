@@ -2,6 +2,39 @@
 
 This library provides a extensions for [dataclasses](https://docs.python.org/3/library/dataclasses.html).
 
+## Sanitise sensitive data
+
+Usually, the log messages and exceptions include a lot of helpful information, for example variable values. 
+In some cases, the output of this information is not secure, potentially exposing sensitive data. 
+You probably would like to hide passwords or personal information to mitigate these risks.
+This module has an additional layer that preprocesses variables before writing down values.
+
+By default, it uses the function repr, which is enough in many cases. 
+However, you can define a custom repr function.
+
+```python
+
+import dataclasses_mod
+
+class SecureStr(str):
+  pass
+
+city = "New York"
+password = SecureStr("my super secret password")
+
+def sanitised_repr(value) -> str:
+  if isinstance(value, SecureStr):
+    return len(value) * "?"
+  return repr(value)
+
+
+dataclasses_mod.set_value_repr(sanitised_repr)
+
+```
+
+Also, if this function raises an exception, it will be ignored, and `"<can't repr>"` will be used instead of repr.
+
+
 ## Abstract dataclasses
 
 The module `dataclasses_mod.abc` allows to define abstract classes that compatible with dataclasses.
