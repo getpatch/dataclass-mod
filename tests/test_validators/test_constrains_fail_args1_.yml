@@ -1,0 +1,5 @@
+message: Expect max length 2
+notes:
+- value 'aac'
+- field b
+type: ValueError

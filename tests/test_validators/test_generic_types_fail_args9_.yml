@@ -1,0 +1,4 @@
+message: expect tuple, got None
+notes:
+- field c
+type: TypeError

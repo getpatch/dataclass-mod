@@ -1,0 +1,5 @@
+message: expect int, got None
+notes:
+- value None
+- field a
+type: TypeError

@@ -1,0 +1,5 @@
+message: expect int, got str
+notes:
+- value 'a'
+- field a
+type: TypeError

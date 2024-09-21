@@ -1,12 +1,24 @@
-from logging import getLogger
-
-logger = getLogger(__name__)
-
+import contextlib
 import dataclasses
 import typing
+import logging
 
+logger = logging.getLogger(__name__)
 
 EXC_WITH_NOTES = tuple[Exception | None, str, ...] | tuple[Exception | None, str] | tuple[Exception | None]
+
+
+_clean_traceback = False
+
+def set_deep_exception_traceback(is_enabled: bool) -> bool:
+    """
+    Enable or disable deep traceback for exception inside library
+    :return: current value
+    """
+    global _clean_traceback
+    result = _clean_traceback
+    _clean_traceback = is_enabled
+    return result
 
 
 def add_exception_notes(exc: Exception | None, *notes: str) -> Exception | None:
@@ -21,9 +33,23 @@ class ExceptionCollector:
 
     exc_list: list[Exception] = dataclasses.field(default_factory=list)
 
+    @contextlib.contextmanager
+    def __call__(self, *notes: str) -> Exception | None:
+        try:
+            yield
+        except (ValueError, TypeError) as exc:
+            self.add(exc, *notes)
+        except ExceptionGroup as exc:
+            if not exc.message and not getattr(exc, "__notes__", None):
+                self.extend((i, *notes) for i in exc.exceptions)
+            else:
+                self.add(exc, *notes)
+
     def add(self, exc: Exception | None, *notes: str) -> typing.Self:
         exc = add_exception_notes(exc, *notes)
         if exc is not None:
+            if _clean_traceback:
+                exc = exc.with_traceback(None)
             self.exc_list.append(exc)
         return self
 
@@ -50,3 +76,5 @@ class ExceptionCollector:
         if len(self.exc_list) == 1:
             return self.exc_list[0]
         return self.group_exception(msg) if self.exc_list else None
+
+

@@ -1,0 +1,10 @@
+message: expect tuple[int] (1 sub-exception)
+notes:
+- field c
+sub-exceptions-0:
+  message: expect int, got str
+  notes:
+  - value 'a'
+  - index 0
+  type: TypeError
+type: ExceptionGroup

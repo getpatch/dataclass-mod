@@ -1,0 +1,4 @@
+message: expect tuple, got bytes
+notes:
+- field d
+type: TypeError

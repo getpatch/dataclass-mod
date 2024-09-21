@@ -1,0 +1,5 @@
+message: Expect min value 10
+notes:
+- value 5
+- field c
+type: ValueError

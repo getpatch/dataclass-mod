@@ -1,0 +1,10 @@
+message: expect list of int (1 sub-exception)
+notes:
+- field a
+sub-exceptions-0:
+  message: expect int, got str
+  notes:
+  - value 'a'
+  - index 0
+  type: TypeError
+type: ExceptionGroup

@@ -1,0 +1,6 @@
+message: Expect equal with field b
+notes:
+- value 'aa'
+- expected value 'ab'
+- field d
+type: ValueError

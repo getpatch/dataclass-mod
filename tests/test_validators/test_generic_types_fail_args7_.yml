@@ -1,0 +1,4 @@
+message: expect list, got str
+notes:
+- field a
+type: TypeError

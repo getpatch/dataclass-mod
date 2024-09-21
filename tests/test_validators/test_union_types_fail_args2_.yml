@@ -1,0 +1,13 @@
+message: expect str | None (2 sub-exceptions)
+notes:
+- value 1
+- field b
+sub-exceptions-0:
+  message: expect NoneType, got int
+  notes: null
+  type: TypeError
+sub-exceptions-1:
+  message: expect str, got int
+  notes: null
+  type: TypeError
+type: ExceptionGroup

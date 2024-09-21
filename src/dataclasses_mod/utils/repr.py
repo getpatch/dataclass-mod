@@ -1,17 +1,23 @@
 import typing
-from logging import getLogger
+import logging
 
-logger = getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 _repr_function = repr
 
 
-def value_repr(value):
+def value_repr(value) -> str:
     try:
         return _repr_function(value)
     except Exception as ex:
         logger.exception("Can not repr object: %s", ex)
         return "<can't repr>"
+
+
+def log_value_repr(value, level, log: logging.Logger) -> str:
+    if log.isEnabledFor(level):
+        return value_repr(value)
+    return "-"
 
 
 def set_value_repr(repr_function: typing.Callable[[...], str] = None):

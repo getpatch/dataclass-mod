@@ -160,10 +160,21 @@ isinstance(A.a, dataclasses.Field)
 
 ## Validation
 
+External type checkers play a crucial role in validating data classes, 
+especially in the absence of built-in validation.
+They provide a way to check the types of fields, although constraints cannot be added within the data classes themselves.
+
+Runtime validation simplifies debugging and catching errors that result in preventing bugs or undefined behavior.
+This validation should not be used to check user input; it is an auxiliary tool that can be disabled.
+
+This module introduces the support of runtime type checks and adds constraints using some sort of definition layer. 
+It also has convenient tools to simplify writing custom validators.
+The most important aspect is that adding validation is easy, 
+as it is a tool for increasing quality instead of solving tasks.
+
 ### Type validation
 
 A dataclass does not have any runtime validation for the field types.
-Adding validation to a data class enables runtime checking of types. 
 
 The list of supported types is limited:
 * python types: `str`, `int`, `None`, `list`
@@ -171,3 +182,37 @@ The list of supported types is limited:
 * unions and options: `int | str`
 * ellipsis and any type: `...`, `typing.Any`
 
+Type validation is enabled by default, to avoid it use `...` or `typing.Any`.
+
+### Field validators
+
+Dataclasses can't provide a way to describe what values are acceptable except type constraints, 
+which are usually not enough. 
+For example, you know in advance that a list can not be empty or an integer can not be negative.
+
+Even if you can check assertions while using these fields, 
+it is spaghetti code because a piece of knowledge about constraints is far from the class definition.
+Also, you can only check these constraints while using the instance instead of creating it.
+The ability to define constraints in class definitions, together with running checks of these constraints, 
+helps avoid bugs.
+
+
+## Logging, debugging and exceptions
+
+This library has a lot of logging inside it. 
+Even if it allows for debugging unexpected or unclear bugs, it is very annoying. 
+To avoid it, you can increase the log level:
+* `debug` - to debug internal process
+* `info` - to check what the library tries to do
+* `warning` and higher - to use without carrying about internal staff
+
+By default, exceptions do not have tracebacks for functions inside library and custom validators.
+To enable them, use `dataclasses_mod.set_deep_exception_traceback`:
+
+```python
+import dataclasses_mod
+
+dataclasses_mod.set_deep_exception_traceback(True)
+```
+
+Usually, it is necessary only for debugging this library. 

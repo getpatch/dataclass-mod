@@ -1,0 +1,13 @@
+message: expect tuple[bool, ...] | None (2 sub-exceptions)
+notes:
+- value []
+- field e
+sub-exceptions-0:
+  message: expect NoneType, got list
+  notes: null
+  type: TypeError
+sub-exceptions-1:
+  message: expect tuple, got list
+  notes: null
+  type: TypeError
+type: ExceptionGroup

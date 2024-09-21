@@ -1,0 +1,5 @@
+message: Expect max value 20
+notes:
+- value 25
+- field c
+type: ValueError

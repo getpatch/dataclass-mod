@@ -1,0 +1,5 @@
+message: Expect min length 1
+notes:
+- value []
+- field a
+type: ValueError

@@ -1,0 +1,4 @@
+message: expect set, got dict
+notes:
+- field b
+type: TypeError

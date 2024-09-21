@@ -1,0 +1,35 @@
+message: Validation errors (2 sub-exceptions)
+notes: null
+sub-exceptions-0:
+  message: expect int | str | bool (3 sub-exceptions)
+  notes:
+  - value None
+  - field a
+  sub-exceptions-0:
+    message: expect bool, got None
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect int, got None
+    notes: null
+    type: TypeError
+  sub-exceptions-2:
+    message: expect str, got None
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+sub-exceptions-1:
+  message: expect str | None (2 sub-exceptions)
+  notes:
+  - value 1
+  - field b
+  sub-exceptions-0:
+    message: expect NoneType, got int
+    notes: null
+    type: TypeError
+  sub-exceptions-1:
+    message: expect str, got int
+    notes: null
+    type: TypeError
+  type: ExceptionGroup
+type: ExceptionGroup

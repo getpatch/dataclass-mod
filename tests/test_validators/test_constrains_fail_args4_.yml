@@ -1,0 +1,5 @@
+message: Expect regular expression `a.?a(c)?`
+notes:
+- value 'ab'
+- field d
+type: ValueError
