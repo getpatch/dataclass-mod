@@ -194,6 +194,21 @@ Also, you can only check these constraints while using the instance instead of c
 The ability to define constraints in class definitions, together with running checks of these constraints, 
 helps avoid bugs.
 
+Example:
+```python
+import dataclasses
+
+from dataclasses_mod import validators as v
+from dataclasses_mod.validators import ValidatorMixin
+
+@dataclasses.dataclass
+class Constrains(ValidatorMixin):
+    a: list[int] = dataclasses.field() >> v.min_length(1)
+    b: str = v.max_length(2)
+    c: int = 10 >> v.min(10) >> v.max(20)
+    d: str | None = "" >> v.re("a.?a(c)?") >> v.eq(b)
+```
+
 ## Compare fields
 
 Mixin allows one to check if the attributes are the same as in another object using a handy schema. 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dataclasses-mod"
-version = "0.2.0"
+version = "0.3.1"
 description = ""
 authors = ["Nikolai Ryzhkov <namezys@anagram.care>"]
 readme = "README.md"
