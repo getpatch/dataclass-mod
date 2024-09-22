@@ -1,0 +1,2 @@
+Found unexpected difference Base -> Cmp:
+      s.b: 2 -> 3

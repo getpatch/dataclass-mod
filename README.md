@@ -2,6 +2,8 @@
 
 This library provides a extensions for [dataclasses](https://docs.python.org/3/library/dataclasses.html).
 
+Only python `3.11` or higher is supported as this library uses `ExceptionGroup` and `Exception.add_note(...)`.
+
 ## Sanitise sensitive data
 
 Usually, the log messages and exceptions include a lot of helpful information, for example variable values. 
@@ -29,7 +31,6 @@ def sanitised_repr(value) -> str:
 
 
 dataclasses_mod.set_value_repr(sanitised_repr)
-
 ```
 
 Also, if this function raises an exception, it will be ignored, and `"<can't repr>"` will be used instead of repr.
@@ -130,7 +131,6 @@ Abstract fields does not have a default value/factory, can be part of `__init__`
 from dataclasses import dataclass
 from dataclasses_mod.abc import ABC, abstractfield
 
-
 @dataclass
 class A(ABC):
   a: int = abstractfield()
@@ -149,10 +149,8 @@ In general class (without `dataclass` decorator) abstract fields are general cla
 import dataclasses
 from dataclasses_mod.abc import ABC, abstractfield
 
-
 class A(ABC):
   a: int = abstractfield()
-
 
 # A.a is abstract field
 isinstance(A.a, dataclasses.Field)
@@ -196,6 +194,119 @@ Also, you can only check these constraints while using the instance instead of c
 The ability to define constraints in class definitions, together with running checks of these constraints, 
 helps avoid bugs.
 
+## Compare fields
+
+Mixin allows one to check if the attributes are the same as in another object using a handy schema. 
+As for validation, it is an auxiliary tool and should not be used for business logic.
+
+These two methods of mixin `CheckFieldsMixin` are essential for checking fields:
+
+* `check_same_fields` compares described fields with the same fields of another object 
+  and raises exception ValueError in case of difference.
+* `check_another_fields` compares the fields of the self-object to the described fields of another object. 
+  Compared to method _check_same_fields, the target field can have different names.
+
+Both methods inspect all fields and raise all differences in one exception.
+Also, both methods accept a tuple of schemas internally compiled into one schema, 
+which allows for easy schema extension. 
+
+### Same field schema
+
+Each element described a field or set of fields:
+* simple string is a deep field that can contain `.` 
+* tuple or list is a set of fields
+* a dict allows us to define deep fields with common prefixes
+
+Example:
+
+```python
+from dataclasses_mod import CheckFieldsMixin
+
+class Base(CheckFieldsMixin):
+    class Sub:
+        a = 1
+        b = 2
+        c = 3
+    a = 10
+    b = 11
+    s = Sub()
+
+class Cmp:
+    class Sub:
+        a = 1
+        b = 3
+        c = 4
+    a = 10
+    b = 12
+    s = Sub()
+
+base = Base()
+cmp = Cmp()
+ 
+# no errors
+base.check_same_fields(cmp, "a")
+base.check_same_fields(cmp, "s.a")
+base.check_same_fields(cmp, ("a", "s.a"))
+base.check_same_fields(cmp, ["s.a", "a"])
+base.check_same_fields(cmp, (("a", ), {"s": "a"}))
+base.check_same_fields(cmp, ("a", {"s": ["a", ]}))
+
+# difference error
+base.check_same_fields(cmp, "b")
+base.check_same_fields(cmp, "s.b")
+base.check_same_fields(cmp, "s.c")
+base.check_same_fields(cmp, ("b", "s.c"))
+base.check_same_fields(cmp, ("b", "s.b", {"s": "c"}))
+base.check_same_fields(cmp, ("b", {"s": ["c", "b"]}))
+```
+
+### Another field schema
+
+Each element described a field of self-object and target attribute as a dict:
+* keys are self-fields, empty keys allow to define of empty prefixes 
+* string values are target attributes
+* tuple or list of strings is used in case of a set of target attributes
+* a dict is used to define self-fields with a common prefix that is key 
+
+Example:
+```python
+from dataclasses_mod import CheckFieldsMixin
+
+class Base(CheckFieldsMixin):
+    class Sub:
+        a = 1
+        b = 2
+        c = 3
+    a = 10
+    b = 11
+    s = Sub()
+
+class Cmp:
+    class Sub:
+        a = 1
+        b = 3
+        c = 4
+    a = 10
+    b = 12
+    s = Sub()
+
+base = Base()
+cmp = Cmp()
+ 
+# no errors
+base.check_another_fields(cmp, {"a": "a", "s.a" : "s.a"})
+base.check_another_fields(cmp, ({"a": "a"}, {"s.a": "s.a"}))
+base.check_another_fields(cmp, {"": {"a": "a", "s.a": "s.a"}})
+base.check_another_fields(cmp, ({"a": {"": "a"}, "s": {"a": "s.a"}}))
+
+# difference error
+base.check_another_fields(cmp, {"b": "b"})
+base.check_another_fields(cmp, {"a": "b"})
+base.check_another_fields(cmp, {"s.b": "s.b"})
+base.check_another_fields(cmp, {"s.a": "s.b"})
+base.check_another_fields(cmp, {"a": "a", "s.b": "s.b"})
+base.check_another_fields(cmp, {"a": ("a", "b"), "s": {"a": "a", "c": "s.c"}})
+```
 
 ## Logging, debugging and exceptions
 
