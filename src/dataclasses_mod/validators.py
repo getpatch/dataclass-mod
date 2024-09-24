@@ -1,7 +1,7 @@
 import abc
 import dataclasses
 import logging
-import re
+import re as re_module
 import typing
 
 from .utils.attrs import get_deep_attr
@@ -89,7 +89,7 @@ class FieldWithValidator(dataclasses.Field):
         )
         self.validator = validator
 
-    def __rrshift__(self, other: dataclasses.Field) -> dataclasses.Field:
+    def __rrshift__(self, other) -> dataclasses.Field:
 
         if not isinstance(other, dataclasses.Field):
             # we try to append validator to value that is default value of field
@@ -127,88 +127,6 @@ class FieldWithValidator(dataclasses.Field):
             init=other.init, repr=other.repr, hash=other.repr, compare=other.compare,
             metadata=metadata, kw_only=other.kw_only
         )
-
-
-class Validators:
-
-    @staticmethod
-    def eq(field: dataclasses.Field | str) -> FieldWithValidator:
-        """
-        Check if field to be equal to another field
-
-        :param field: another field from same data class of path related to current instance
-        """
-        return FieldWithValidator(DependValidator(field, lambda a, b: a == b, "equal", True))
-
-    @staticmethod
-    def min(value) -> FieldWithValidator:
-        """
-        Check if value is not less than minimum
-        """
-        return FieldWithValidator(SimpleValidator(lambda v: v >= value, f"min value {value}", True))
-
-    @staticmethod
-    def max(value) -> FieldWithValidator:
-        """
-        Check if value is not greater than maximum
-        """
-        return FieldWithValidator(SimpleValidator(lambda v: v <= value, f"max value {value}", True))
-
-    @staticmethod
-    def range(min_value, max_value) -> FieldWithValidator:
-        """
-        Check if value in in the range
-        """
-        return FieldWithValidator(SimpleValidator(lambda v: min_value <= v <= max_value,
-                                                  f"value in [{min_value}, {max_value}]", True))
-
-    @staticmethod
-    def min_length(value) -> FieldWithValidator:
-        """
-        Check if sequence length is not less than minimum length
-        """
-        return FieldWithValidator(SimpleValidator(lambda v: len(v) >= value, f"min length {value}", True))
-
-    @staticmethod
-    def max_length(value) -> FieldWithValidator:
-        """
-        Check if sequence length is not greater than maximum length
-        """
-        return FieldWithValidator(SimpleValidator(lambda v: len(v) <= value, f"max length {value}", True))
-
-    @staticmethod
-    def length(value) -> FieldWithValidator:
-        """
-        Check if sequence length is provided
-
-        Note: use tuple instead of list to check length
-        """
-        return FieldWithValidator(SimpleValidator(lambda v: len(v) == value, f"length {value}", True))
-
-    @staticmethod
-    def re(reg_exp: typing.Pattern | str) -> FieldWithValidator:
-        """
-        Check if string value is matched to regular expression
-        """
-        if isinstance(reg_exp, str):
-            if not reg_exp.startswith("^"):
-                reg_exp = "^" + reg_exp
-            if not reg_exp.endswith("$"):
-                reg_exp = reg_exp + "$"
-            reg_exp = re.compile(reg_exp)
-        pattern = reg_exp.pattern.lstrip("^").rstrip("$")
-        return FieldWithValidator(SimpleValidator(lambda v: reg_exp.match(v) is not None,
-                                                  f"regular expression `{pattern}`", True))
-
-    @staticmethod
-    def values(*values) -> FieldWithValidator:
-        """
-        Check if value is in the provided list
-        """
-        return FieldWithValidator(SimpleValidator(lambda v: v in values, f"values {values}", True))
-
-
-validators = Validators()
 
 
 class ValidatorMixin:
@@ -301,3 +219,79 @@ class ValidatorMixin:
 
         logger.debug("Validation of %s finished with %s exceptions", field.name, len(exc_collector.exc_list))
         return exc_collector.single_or_group_exception("Field validation errors")
+
+
+def eq(field: dataclasses.Field | str) -> FieldWithValidator:
+    """
+    Check if field to be equal to another field
+
+    :param field: another field from same data class of path related to current instance
+    """
+    return FieldWithValidator(DependValidator(field, lambda a, b: a == b, "equal", True))
+
+
+def min(value) -> FieldWithValidator:  # noqa
+    """
+    Check if value is not less than minimum
+    """
+    return FieldWithValidator(SimpleValidator(lambda v: v >= value, f"min value {value}", True))
+
+
+def max(value) -> FieldWithValidator:  # noqa
+    """
+    Check if value is not greater than maximum
+    """
+    return FieldWithValidator(SimpleValidator(lambda v: v <= value, f"max value {value}", True))
+
+
+def range(min_value, max_value) -> FieldWithValidator:  # noqa
+    """
+    Check if value in in the range
+    """
+    return FieldWithValidator(SimpleValidator(lambda v: min_value <= v <= max_value,
+                                              f"value in [{min_value}, {max_value}]", True))
+
+
+def min_length(value) -> FieldWithValidator:
+    """
+    Check if sequence length is not less than minimum length
+    """
+    return FieldWithValidator(SimpleValidator(lambda v: len(v) >= value, f"min length {value}", True))
+
+
+def max_length(value) -> FieldWithValidator:
+    """
+    Check if sequence length is not greater than maximum length
+    """
+    return FieldWithValidator(SimpleValidator(lambda v: len(v) <= value, f"max length {value}", True))
+
+
+def length(value) -> FieldWithValidator:
+    """
+    Check if sequence length is provided
+
+    Note: use tuple instead of list to check length
+    """
+    return FieldWithValidator(SimpleValidator(lambda v: len(v) == value, f"length {value}", True))
+
+
+def re(reg_exp: typing.Pattern | str) -> FieldWithValidator:
+    """
+    Check if string value is matched to regular expression
+    """
+    if isinstance(reg_exp, str):
+        if not reg_exp.startswith("^"):
+            reg_exp = "^" + reg_exp
+        if not reg_exp.endswith("$"):
+            reg_exp = reg_exp + "$"
+        reg_exp = re_module.compile(reg_exp)
+    pattern = reg_exp.pattern.lstrip("^").rstrip("$")
+    return FieldWithValidator(SimpleValidator(lambda v: reg_exp.match(v) is not None,
+                                              f"regular expression `{pattern}`", True))
+
+
+def values(*expected_values) -> FieldWithValidator:
+    """
+    Check if value is in the provided list
+    """
+    return FieldWithValidator(SimpleValidator(lambda v: v in expected_values, f"values {expected_values}", True))
